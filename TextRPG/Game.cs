@@ -16,6 +16,8 @@ namespace TextRPG
     {
         private GameMode mode = GameMode.Lobby;
         private Player player = null;
+        private Monster monster = null;
+        private Random rand = new Random();
 
         public void Process()
         {
@@ -88,7 +90,97 @@ namespace TextRPG
 
         public void ProcessField()
         {
+            Console.WriteLine("==========[필드입장]==========");
+            Console.WriteLine("필드에 입장하셨습니다.");
 
+            CreateRandomMonster();
+            
+            Console.WriteLine("[1] 싸운다");
+            Console.WriteLine("[2] 도망간다");
+            Console.WriteLine("=============================");
+            Console.Write(">>");
+
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    ProcessFight();
+                    break;
+                case "2":
+                    TryEscape();
+                    break;
+            }
+        }
+
+        public void CreateRandomMonster()
+        {
+            int randValue = rand.Next(0, 3);
+            switch (randValue)
+            {
+                case 0:
+                    monster = new Slime();
+                    Console.WriteLine("슬라임이 나타났습니다..!");
+                    break;
+                case 1:
+                    monster = new Orc();
+                    Console.WriteLine("오크가 나타났습니다..!");
+                    break;
+                case 2:
+                    monster = new Skeleton();
+                    Console.WriteLine("해골병사가 나타났습니다..!");
+                    break;
+            }
+        }
+
+        public void ProcessFight()
+        {
+            while (true)
+            {
+                int damage = player.GetAttack();
+                monster.OnDamaged(damage);
+                if (monster.IsDead())
+                {
+                    Console.WriteLine("=======[전투 승리]=======");
+                    Console.WriteLine("전투에서 승리하셨습니다!!");
+                    Console.WriteLine($"남은체력: {player.GetHp()}");
+                    Console.WriteLine("========================");
+                    mode = GameMode.Town;
+                    break;
+                }
+
+                damage = monster.GetAttack();
+                player.OnDamaged(damage);
+                if (player.IsDead())
+                {
+                    Console.WriteLine("=========[사망]=========");
+                    Console.WriteLine("당신은 사망하셨습니다..");
+                    Console.WriteLine("========================");
+                    mode = GameMode.Lobby;
+                    break;
+                }
+            }
+        }
+
+        public void TryEscape()
+        {
+            int randValue = rand.Next(0, 100);
+
+            if (randValue < 33)
+            {
+                Console.WriteLine("========[도주 성공]========");
+                Console.WriteLine("성공적으로 도망쳤습니다..!");
+                Console.WriteLine("==========================");
+                mode = GameMode.Town;
+            }
+            else
+            {
+                Console.WriteLine("=====[도주 실패]=====");
+                Console.WriteLine("도주에 실패하였습니다.");
+                Console.WriteLine("전투에 돌입합니다.");
+                Console.WriteLine("====================");
+                ProcessFight();
+            }
         }
     }
 }
