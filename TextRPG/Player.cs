@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TextRPG
 {
-    enum PlayerType
+    public enum PlayerType
     {
         None = 0,
         Knight = 1,
@@ -12,37 +12,17 @@ namespace TextRPG
         Mage = 3
     }
 
-    class Player
+    class Player : Creature
     {
         protected PlayerType _type = PlayerType.None;
-        protected int _hp = 0;
-        protected int _attack = 0;
 
-        protected Player(PlayerType type)
+        protected Player(PlayerType type) : base(CreatureType.Player)
         {
             _type = type;
         }
 
-        public void SetInfo(int hp, int attack)
-        {
-            _hp = hp;
-            _attack = attack;
-        }
-
         public PlayerType GetPlayerType() { return _type; }
-        public int GetHp() { return _hp; }
-        public int GetAttack() { return _attack; }
-
-        public bool IsDead() { return _hp <= 0; }
-
-        public void OnDamaged(int damage)
-        {
-            _hp -= damage;
-            if(_hp < 0)
-            {
-                _hp = 0;
-            }
-        }
+        
     }
 
     class Knight : Player
