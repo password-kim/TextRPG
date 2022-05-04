@@ -19,6 +19,7 @@ namespace TextRPG
         protected Monster(MonsterType type) : base(CreatureType.Monster)
         {
             _type = type;
+
         }
 
         public MonsterType GetMonsterType() { return _type; }
@@ -29,6 +30,7 @@ namespace TextRPG
         public Slime() : base(MonsterType.Slime)
         {
             SetInfo(20, 5);
+            Console.WriteLine("슬라임이 나타났습니다..!");
         }
     }
 
@@ -37,6 +39,8 @@ namespace TextRPG
         public Orc() : base(MonsterType.Orc)
         {
             SetInfo(30, 7);
+            Console.WriteLine("오크가 나타났습니다..!");
+
         }
     }
 
@@ -45,6 +49,8 @@ namespace TextRPG
         public Skeleton() : base(MonsterType.Skeleton)
         {
             SetInfo(25, 10);
+            Console.WriteLine("해골병사가 나타났습니다..!");
+
         }
     }
 }

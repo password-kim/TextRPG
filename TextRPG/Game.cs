@@ -40,7 +40,7 @@ namespace TextRPG
             Console.WriteLine("=====[직업 선택]=====");
             Console.WriteLine("직업을 선택하세요.");
             Console.WriteLine("[1] 기사");
-            Console.WriteLine("[2] 궁사");
+            Console.WriteLine("[2] 궁수");
             Console.WriteLine("[3] 마법사");
             Console.WriteLine("=====================");
             Console.Write(">>");
@@ -51,14 +51,20 @@ namespace TextRPG
             {
                 case "1":
                     player = new Knight();
+                    Console.WriteLine($"HP: {player.GetHp()} / ATT: {player.GetAttack()} ");
+                    Console.WriteLine("======================");
                     mode = GameMode.Town;
                     break;
                 case "2":
                     player = new Archer();
+                    Console.WriteLine($"HP: {player.GetHp()} / ATT: {player.GetAttack()} ");
+                    Console.WriteLine("======================");
                     mode = GameMode.Town;
                     break;
                 case "3":
                     player = new Mage();
+                    Console.WriteLine($"HP: {player.GetHp()} / ATT: {player.GetAttack()} ");
+                    Console.WriteLine("======================");
                     mode = GameMode.Town;
                     break;
                 default:
@@ -72,6 +78,7 @@ namespace TextRPG
             Console.WriteLine("마을에 입장했습니다!");
             Console.WriteLine("[1] 필드로 가기");
             Console.WriteLine("[2] 로비로 돌아가기");
+            Console.WriteLine("[3] 게임 종료");
             Console.WriteLine("======================");
             Console.Write(">>");
 
@@ -84,6 +91,9 @@ namespace TextRPG
                     break;
                 case "2":
                     mode = GameMode.Lobby;
+                    break;
+                case "3":
+                    Environment.Exit(0);
                     break;
             }
         }
@@ -120,15 +130,15 @@ namespace TextRPG
             {
                 case 0:
                     monster = new Slime();
-                    Console.WriteLine("슬라임이 나타났습니다..!");
+                    Console.WriteLine($"HP: {monster.GetHp()} / ATT: {monster.GetAttack()}");
                     break;
                 case 1:
                     monster = new Orc();
-                    Console.WriteLine("오크가 나타났습니다..!");
+                    Console.WriteLine($"HP: {monster.GetHp()} / ATT: {monster.GetAttack()}");
                     break;
                 case 2:
                     monster = new Skeleton();
-                    Console.WriteLine("해골병사가 나타났습니다..!");
+                    Console.WriteLine($"HP: {monster.GetHp()} / ATT: {monster.GetAttack()}");
                     break;
             }
         }

@@ -30,6 +30,8 @@ namespace TextRPG
         public Knight() : base(PlayerType.Knight)
         {
             SetInfo(100, 10);
+            Console.WriteLine("========[기사]========");
+            Console.WriteLine("기사를 선택하셨습니다!");
         }
     }
 
@@ -38,6 +40,8 @@ namespace TextRPG
         public Archer() : base(PlayerType.Archer)
         {
             SetInfo(75, 12);
+            Console.WriteLine("========[궁수]========");
+            Console.WriteLine("궁수를 선택하셨습니다!");
         }
     }
 
@@ -46,6 +50,8 @@ namespace TextRPG
         public Mage() : base(PlayerType.Mage)
         {
             SetInfo(60, 15);
+            Console.WriteLine("========[마법사]========");
+            Console.WriteLine("마법사를 선택하셨습니다!");
         }
     }
 }
